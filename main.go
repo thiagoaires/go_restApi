@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/gin-gonic/gin"
+)
 
 type Pizza struct {
 	ID    int
@@ -9,10 +13,15 @@ type Pizza struct {
 }
 
 func main() {
-	// toscana, marguerita, atum com queijo
-	// nomePizzaria := "Pizza a goGO"
-	// insta, phone := "@pizza_go", 11911111111
-	// fmt.Println(nomePizzaria, insta, phone)
+	router := gin.Default()
+
+	router.GET("/pizzas", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"pizzas": "Toscana, Calabresa",
+		})
+	})
+
+	router.Run()
 
 	var pizzas = []Pizza{
 		{ID: 1, nome: "Toscana", preco: 12.94},
